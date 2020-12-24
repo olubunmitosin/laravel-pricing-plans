@@ -1,5 +1,5 @@
 {
-  "name": "oanhnn/laravel-pricing-plans",
+  "name": "cityhunter/laravel-pricing-plans",
   "type": "library",
   "description": "A package provide pricing plans for Laravel.",
   "keywords": [
@@ -9,10 +9,10 @@
     "pricing"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/oanhnn/laravel-pricing-plans",
+  "homepage": "https://github.com/henoc35/laravel-pricing-plans",
   "support": {
-    "issues": "https://github.com/oanhnn/laravel-pricing-plans/issues",
-    "source": "https://github.com/oanhnn/laravel-pricing-plans"
+    "issues": "https://github.com/henoc35/laravel-pricing-plans/issues",
+    "source": "https://github.com/henoc35/laravel-pricing-plans"
   },
   "authors": [
     {
@@ -26,18 +26,19 @@
     }
   },
   "require": {
-    "php": ">=7.0",
-    "illuminate/database": "~5.4",
-    "illuminate/support": "~5.4",
-    "nesbot/carbon": "~1.21"
+    "php": ">=7.3|^8.0",
+    "ext-json": "*",
+    "illuminate/database": "^8.0",
+    "illuminate/support": "^8.0",
+    "nesbot/carbon": "^2.43.0"
   },
   "require-dev": {
-    "fzaninotto/faker": "^1.4",
-    "mockery/mockery": "^0.9",
-    "orchestra/database": "^3.4",
-    "orchestra/testbench": "^3.4",
-    "phpunit/phpunit": "~6.1|~7.0",
-    "squizlabs/php_codesniffer": "^3.0"
+    "fakerphp/faker": "^1.13",
+    "mockery/mockery": "^1.4.2",
+    "orchestra/database": "6.x-dev",
+    "orchestra/testbench": "^6.7",
+    "phpunit/phpunit": "^9.5",
+    "squizlabs/php_codesniffer": "^3.5"
   },
   "scripts": {
     "phpunit": "php vendor/phpunit/phpunit/phpunit --coverage-html build/coverage",

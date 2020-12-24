@@ -9,7 +9,6 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         syntaxCheck="true"
          verbose="true"
 >
     <php>
@@ -23,14 +22,4 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
-
-    <!-- Ignore vendor tests in code coverage reports -->
-    <filter>
-        <blacklist>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
-        <whitelist>
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
 </phpunit>

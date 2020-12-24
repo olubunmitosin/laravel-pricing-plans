@@ -5,7 +5,7 @@
 [![Latest Version](https://img.shields.io/github/release/oanhnn/laravel-pricing-plans.svg?style=flat-square)](https://github.com/oanhnn/laravel-pricing-plans/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Easy provide pricing plans for Your Laravel 5.4+ Application.
+Easy provide pricing plans for Your Laravel 8.+ Application.
 
 <!-- MarkdownTOC depth="2" autolink="true" bracket="round" -->
 
@@ -50,7 +50,7 @@ Easy provide pricing plans for Your Laravel 5.4+ Application.
 
 ## Main features
 
-Easy provide pricing plans for Your Laravel 5.4+ Application.
+Easy provide pricing plans for Your Laravel 8.+ Application.
 
 ## TODO
 
@@ -60,8 +60,8 @@ Easy provide pricing plans for Your Laravel 5.4+ Application.
 
 ## Requirements
 
-* php >=7.0
-* Laravel 5.4+
+* php >=7.3
+* Laravel 8.+
 
 ## Installation
 
@@ -75,7 +75,7 @@ $ composer require oanhnn/laravel-pricing-plans
 
 ### Service Provider
 
-Next, if using Laravel 5.5+, you done. If using Laravel 5.4, you must include the service provider within your `config/app.php` file.
+Next, if using Laravel 8.+, you done. If using Laravel 5.4, you must include the service provider within your `config/app.php` file.
 
 ```php
 // config/app.php

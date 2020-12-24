@@ -17,7 +17,7 @@ class TestCase extends Testbench
      *
      * @throws \Exception
      */
-    public function setUp()
+    public function setUp():void
     {
         parent::setUp();
 
@@ -27,7 +27,8 @@ class TestCase extends Testbench
         // Run package migrations
         $this->loadMigrationsFrom([
             '--database' => 'testbench',
-            '--realpath' => realpath(__DIR__ . '/../resources/migrations'),
+            '--realpath' => true,
+            '--path' => realpath(__DIR__ . '/../resources/migrations')
         ]);
     }
 
