@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'day' => 'Day',
-    'week' => 'Week',
-    'month' => 'Month',
-    'year' => 'Year',
+    'day' => 'Jour',
+    'week' => 'Semaine',
+    'month' => 'Mois',
+    'year' => 'Année',
 
     'interval_description' => [
-        'day' => 'Daily|Every :count Days',
-        'week' => 'Weekly|Every :count Weeks',
-        'month' => 'Monthly|Every :count Months',
-        'year' => 'Annual|Every :count Years',
+        'day' => 'Quotidien|Tous les :count Jours',
+        'week' => 'Hebdomadaire|Toutes les :count Semaines',
+        'month' => 'Mensuel|Tous les :count Mois',
+        'year' => 'Annuel|Tous les :count Ans',
     ],
 ];
