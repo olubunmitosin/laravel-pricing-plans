@@ -1,6 +1,6 @@
 # Laravel Pricing Plans
 
-[![Build Status](https://travis-ci.com/henoc35/laravel-pricing-plans.svg?branch=master)](https://travis-ci.org/henoc35/laravel-pricing-plans)
+[![Build Status](https://travis-ci.com/henoc35/laravel-pricing-plans.svg?branch=master)](https://travis-ci.com/henoc35/laravel-pricing-plans)
 [![Coverage Status](https://coveralls.io/repos/github/oanhnn/laravel-pricing-plans/badge.svg?branch=master)](https://coveralls.io/github/oanhnn/laravel-pricing-plans?branch=master)
 [![Latest Version](https://img.shields.io/github/release/oanhnn/laravel-pricing-plans.svg?style=flat-square)](https://github.com/oanhnn/laravel-pricing-plans/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
