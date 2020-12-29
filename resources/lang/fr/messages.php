@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'day' => 'Ngày',
-    'week' => 'Tuần',
-    'month' => 'Tháng',
-    'year' => 'Năm',
+    'day' => 'Jour',
+    'week' => 'Semaine',
+    'month' => 'Mois',
+    'year' => 'Année',
 
     'interval_description' => [
-        'day' => 'Hàng ngày|Trong :count ngày',
-        'week' => 'Hàng tuần|Trong :count tuần',
-        'month' => 'Hàng tháng|Trong :count tháng',
-        'year' => 'Hàng năm|Trong :count năm',
+        'day' => 'Quotidien|Tous les :count Jours',
+        'week' => 'Hebdomadaire|Toutes les :count Semaines',
+        'month' => 'Mensuel|Tous les :count Mois',
+        'year' => 'Annuel|Tous les :count Ans',
     ],
 ];
