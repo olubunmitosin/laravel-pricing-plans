@@ -29,6 +29,8 @@ return [
     'tables' => [
         'features'                 => 'features',
         'plans'                    => 'plans',
+        'groups'                   => 'groups',
+        'plan_groups'              => 'plan_groups',
         'plan_features'            => 'plan_features',
         'plan_subscriptions'       => 'plan_subscriptions',
         'plan_subscription_usages' => 'plan_subscription_usages',
@@ -49,6 +51,9 @@ return [
         'PlanFeature'           => 'Laravel\\PricingPlans\\Models\\PlanFeature',
         'PlanSubscription'      => 'Laravel\\PricingPlans\\Models\\PlanSubscription',
         'PlanSubscriptionUsage' => 'Laravel\\PricingPlans\\Models\\PlanSubscriptionUsage',
+        //
+        'Group'                 => 'Laravel\\PricingPlans\\Models\\Group',
+        'PlanGroup'                 => 'Laravel\\PricingPlans\\Models\\PlanGroup',
     ],
 
 ];

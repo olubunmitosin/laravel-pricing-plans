@@ -6,6 +6,10 @@ use Laravel\PricingPlans\Models\Feature;
 use Laravel\PricingPlans\Models\Plan;
 use Laravel\PricingPlans\Tests\TestCase;
 
+/**
+ * Class PlanTest
+ * @package Laravel\PricingPlans\Integration\Models
+ */
 class PlanTest extends TestCase
 {
     /**

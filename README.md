@@ -19,17 +19,20 @@ Easy provide pricing plans for Your Laravel 8.+ Application.
     - [Contract and Traits](#contract-and-traits)
 - [Config File](#config-file)
 - [Models](#models)
-    - [Feature model](#feature-model) 
-    - [Plan model](#plan-model) 
-    - [PlanFeature model](#planfeature-model) 
-    - [PlanSubscription model](#plansubscription-model) 
-    - [PlanSubscriptionUsage model](#plansubscriptionusage-model) 
+    - [Feature model](#feature-model)
+    - [Plan model](#plan-model)
+    - [Group model](#group-model)
+    - [PlanFeature model](#planfeature-model)
+    - [PlanGroup model](#plangroup-model)
+    - [PlanSubscription model](#plansubscription-model)
+    - [PlanSubscriptionUsage model](#plansubscriptionusage-model)
 - [Events](#events)
     - [SubscriptionRenewed event](#subscriptionrenewed-event)
     - [SubscriptionCanceled event](#subscriptioncanceled-event)
     - [SubscriptionPlanChanged event](#subscriptionplanchanged-event)
 - [Usage](#usage)
     - [Create features and plan](#create-features-and-plan)
+    - [Create a group of plans](#create-a-group-of-plans)
     - [Creating subscriptions](#creating-subscriptions)
     - [Subscription Ability](#subscription-ability)
     - [Record Feature Usage](#record-feature-usage)
@@ -75,7 +78,8 @@ $ composer require cityhunter/laravel-pricing-plans
 
 ### Service Provider
 
-Next, if using Laravel 8.+, you done. If using Laravel 5.4, you must include the service provider within your `config/app.php` file.
+Next, if using Laravel 8.+, you done. If using Laravel 5.4, you must include the service provider within
+your `config/app.php` file.
 
 ```php
 // config/app.php
@@ -103,8 +107,8 @@ $ php artisan migrate
 
 ### Contract and Traits
 
-Add `Laravel\PricingPlans\Contacts\Subscriber` contract and `Laravel\PricingPlans\Models\Concerns\Subscribable` trait 
-to your subscriber model (Eg. `User`).
+Add `Laravel\PricingPlans\Contacts\Subscriber` contract and `Laravel\PricingPlans\Models\Concerns\Subscribable` trait to
+your subscriber model (Eg. `User`).
 
 See the following example:
 
@@ -123,21 +127,22 @@ class User extends Authenticatable implements Subscriber
     // ...
 }
 ```
+
 ## Config File
 
 You can configure what database tables, what models to use, list of positive words will use.
 
 Definitions:
 
-- **Positive Words**: Are used to tell if a particular feature is _enabled_. E.g., if the feature `listing_title_bold` 
-   has the value `Y` (_Y_ is one of the positive words) then, that means it's enabled.
+- **Positive Words**: Are used to tell if a particular feature is _enabled_. E.g., if the feature `listing_title_bold`
+  has the value `Y` (_Y_ is one of the positive words) then, that means it's enabled.
 
 Take a look to the `config/plans.php` config file for more details.
 
 ## Models
 
-PricingPlans uses 5 models under namespace `Laravel\PricingPlans\Models`. You can change to using extended classes of it by 
-changing models class in config file:
+PricingPlans uses 7 models under namespace `Laravel\PricingPlans\Models`. You can change to using extended classes of it
+by changing models class in config file:
 
 ### Feature model
 
@@ -174,9 +179,29 @@ class Plan extends Model
 }
 ```
 
+### Group model
+
+This model is model object of group
+
+```php
+<?php
+namespace App\Models;
+
+use Laravel\PricingPlans\Models\Group as Model;
+
+class Group extends Model
+{
+   
+}
+```
+
 ### PlanFeature model
 
 This model is relation model object between plan and feature
+
+### PlanGroup model
+
+This model is relation model object between plan and group
 
 ### PlanSubscription model
 
@@ -202,8 +227,8 @@ Fired when a subscription is canceled using the `cancel()` method.
 
 ### `SubscriptionPlanChanged` event
 
-Fired when a subscription's plan is changed. This will be triggered once the `PlanSubscription` model is saved. 
-Plan change is determine by comparing the original and current value of `plan_id`.
+Fired when a subscription's plan is changed. This will be triggered once the `PlanSubscription` model is saved. Plan
+change is determine by comparing the original and current value of `plan_id`.
 
 ## Usage
 
@@ -250,11 +275,52 @@ $plan->features()->attach([
 ]);
 ```
 
+### Create a group of plans
+
+```php
+<?php
+
+use Laravel\PricingPlans\Models\Group;
+use Laravel\PricingPlans\Models\Plan;
+
+$plan1 = Plan::create([
+    'name' => 'Pro',
+    'code' => 'pro',
+    'description' => 'Pro plan',
+    'price' => 19.9,
+    'interval_unit' => 'month',
+    'interval_count' => 1,
+    'trial_period_days' => 15,
+    'sort_order' => 1,
+]);
+
+$plan2 = Plan::create([
+    'name' => 'Free',
+    'code' => 'Free',
+    'description' => 'Free plan',
+    'price' => 0,
+    'interval_unit' => 'month',
+    'interval_count' => 1,
+    'trial_period_days' => 30,
+    'sort_order' => 1,
+]);
+
+$group = Group::create([
+    'name' => 'Service1',
+    'description' => "Service 1 plan group description"
+]);
+
+$group->plans()->attach([
+    $plan1->id => ['created_at' => now()],
+    $plan2->id => ['created_at' => now()],
+]);
+```
+
 ### Creating subscriptions
 
-You can subscribe a user to a plan by using the `newSubscription()` function available in the `Subscribable` trait. 
-First, retrieve an instance of your subscriber model, which typically will be your user model and an instance of the plan
-your user is subscribing to. Once you have retrieved the model instance, you may use the `newSubscription` method 
+You can subscribe a user to a plan by using the `newSubscription()` function available in the `Subscribable` trait.
+First, retrieve an instance of your subscriber model, which typically will be your user model and an instance of the
+plan your user is subscribing to. Once you have retrieved the model instance, you may use the `newSubscription` method
 to create the model's subscription.
 
 ```php
@@ -269,8 +335,9 @@ $plan = Plan::code(Plan::PLAN_PRO)->firstOrFail();
 $user->newSubscription('main', $plan)->create();
 ```
 
-The first argument passed to `newSubscription` method should be the name of the subscription. If your application offer 
-a single subscription, you might call this `main` or `primary`. The second argument is the plan instance your user is subscribing to.
+The first argument passed to `newSubscription` method should be the name of the subscription. If your application offer
+a single subscription, you might call this `main` or `primary`. The second argument is the plan instance your user is
+subscribing to.
 
 <!-- ~~If both plans (current and new plan) have the same billing frequency (e.g., ` interval_unit` and `interval_count`) the subscription 
 will retain the same billing dates. If the plans don't have the same billing frequency, the subscription will have the new plan billing frequency, 
@@ -280,7 +347,8 @@ starting on the day of the change and _the subscription usage data will be clear
 
 ### Subscription Ability
 
-There's multiple ways to determine the usage and ability of a particular feature in the user subscription, the most common one is `canUse`:
+There's multiple ways to determine the usage and ability of a particular feature in the user subscription, the most
+common one is `canUse`:
 
 The `canUse` method returns `true` or `false` depending on multiple factors:
 
@@ -300,22 +368,21 @@ Other methods are:
 - `value`: returns the feature value.
 
 > All methods share the same signature: e.g.    
->`$user->subscription('main')->ability()->consumed(Feature::FEATURE_UPLOAD_IMAGES);`.
-
+> `$user->subscription('main')->ability()->consumed(Feature::FEATURE_UPLOAD_IMAGES);`.
 
 ### Record Feature Usage
 
-In order to efectively use the ability methods you will need to keep track of every usage of each feature 
-(or at least those that require it). You may use the `record` method available through the user `subscriptionUsage()` 
+In order to efectively use the ability methods you will need to keep track of every usage of each feature
+(or at least those that require it). You may use the `record` method available through the user `subscriptionUsage()`
 method:
 
 ```php
 $user->subscriptionUsage('main')->record(Feature::FEATURE_UPLOAD_IMAGES);
 ```
 
-The `record` method accept 3 parameters: the first one is the feature's code, the second one is the quantity of 
-uses to add (default is `1`), and the third one indicates if the addition should be incremental (default behavior), 
-when disabled the usage will be override by the quantity provided. E.g.:
+The `record` method accept 3 parameters: the first one is the feature's code, the second one is the quantity of uses to
+add (default is `1`), and the third one indicates if the addition should be incremental (default behavior), when
+disabled the usage will be override by the quantity provided. E.g.:
 
 ```php
 // Increment by 2
@@ -327,7 +394,8 @@ $user->subscriptionUsage('main')->record(Feature::FEATURE_UPLOAD_IMAGES, 9, fals
 
 ### Reduce Feature Usage
 
-Reducing the feature usage is _almost_ the same as incrementing it. Here we only _substract_ a given quantity (default is `1`) 
+Reducing the feature usage is _almost_ the same as incrementing it. Here we only _substract_ a given quantity (default
+is `1`)
 to the actual usage:
 
 ```php
@@ -366,8 +434,8 @@ $user->subscription('main')->onTrial();
 
 ### Renew a Subscription
 
-To renew a subscription you may use the `renew` method available in the subscription model. 
-This will set a new `ends_at` date based on the selected plan and _will clear the usage data_ of the subscription.
+To renew a subscription you may use the `renew` method available in the subscription model. This will set a
+new `ends_at` date based on the selected plan and _will clear the usage data_ of the subscription.
 
 ```php
 $user->subscription('main')->renew();
@@ -383,7 +451,8 @@ To cancel a subscription, simply use the `cancel` method on the user's subscript
 $user->subscription('main')->cancel();
 ```
 
-By default the subscription will remain active until the end of the period, you may pass `true` to end the subscription _immediately_:
+By default the subscription will remain active until the end of the period, you may pass `true` to end the
+subscription _immediately_:
 
 ```php
 $user->subscription('main')->cancel(true);
@@ -392,6 +461,7 @@ $user->subscription('main')->cancel(true);
 ### Scopes
 
 #### Subscription Model
+
 ```php
 <?php
 
@@ -435,13 +505,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email to [Oanh Nguyen](mailto:oanhnn.bk@gmail.com) instead of 
-using the issue tracker.
+If you discover any security related issues, please email to [Oanh Nguyen](mailto:oanhnn.bk@gmail.com) instead of using
+the issue tracker.
 
 ## Credits
 
-I forked and recreated this project from [gerardojbaez/laraplans](https://github.com/gerardojbaez/laraplans) project in mid-2017.
-Thank [Gerardo Baez](https://github.com/gerardojbaez)
+I forked and recreated this project from [gerardojbaez/laraplans](https://github.com/gerardojbaez/laraplans) project in
+mid-2017. Thank [Gerardo Baez](https://github.com/gerardojbaez)
 
 - [Oanh Nguyen](https://github.com/oanhnn)
 - [Gerardo Baez](https://github.com/gerardojbaez)

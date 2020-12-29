@@ -41,6 +41,24 @@ class CreatePlansTables extends Migration
             $table->timestamps();
         });
 
+        Schema::create($tables['groups'], function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create($tables['plan_groups'], function (Blueprint $table) use ($tables) {
+            $table->increments('id');
+            $table->integer('plan_id')->unsigned();
+            $table->integer('group_id')->unsigned();
+            $table->timestamp('created_at');
+
+            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on($tables['groups'])->onDelete('cascade');
+            $table->unique(['plan_id', 'group_id']);
+        });
+
         Schema::create($tables['plan_features'], function (Blueprint $table) {
             $table->increments('id');
             $table->integer('plan_id')->unsigned();

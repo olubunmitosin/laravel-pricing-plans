@@ -11,6 +11,10 @@ use InvalidArgumentException;
 use Laravel\PricingPlans\Period;
 use Laravel\PricingPlans\Tests\TestCase;
 
+/**
+ * Class PeriodTest
+ * @package Laravel\PricingPlans\Unit
+ */
 class PeriodTest extends TestCase
 {
     /**

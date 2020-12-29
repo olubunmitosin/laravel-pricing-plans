@@ -7,6 +7,10 @@ use DateInterval;
 use Laravel\PricingPlans\Models\Feature;
 use Laravel\PricingPlans\Tests\TestCase;
 
+/**
+ * Class FeatureTest
+ * @package Laravel\PricingPlans\Integration\Models
+ */
 class FeatureTest extends TestCase
 {
     /**
