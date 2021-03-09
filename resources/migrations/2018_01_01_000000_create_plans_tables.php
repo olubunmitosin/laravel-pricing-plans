@@ -111,6 +111,8 @@ class CreatePlansTables extends Migration
     {
         $tables = Config::get('plans.tables');
 
+        Schema::dropIfExists($tables['plan_groups']);
+        Schema::dropIfExists($tables['groups']);
         Schema::dropIfExists($tables['plan_subscription_usages']);
         Schema::dropIfExists($tables['plan_subscriptions']);
         Schema::dropIfExists($tables['plan_features']);
