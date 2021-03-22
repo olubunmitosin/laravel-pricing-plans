@@ -42,7 +42,7 @@ class PlanGroup extends Model
     protected $dates = [
         'created_at',
     ];
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     /**
      * Plan constructor.

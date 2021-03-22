@@ -17,7 +17,7 @@ class TestCase extends Testbench
      *
      * @throws \Exception
      */
-    public function setUp():void
+    public function setUp(): void
     {
         parent::setUp();
 

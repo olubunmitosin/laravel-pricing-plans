@@ -12,10 +12,10 @@ class Period
     /**
      * The interval constants.
      */
-    const DAY = 'day';
-    const WEEK = 'week';
-    const MONTH = 'month';
-    const YEAR = 'year';
+    public const DAY = 'day';
+    public const WEEK = 'week';
+    public const MONTH = 'month';
+    public const YEAR = 'year';
 
     /**
      * Map Interval to Carbon methods.

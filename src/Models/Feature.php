@@ -19,7 +19,8 @@ use Laravel\PricingPlans\Models\Concerns\Resettable;
  */
 class Feature extends Model
 {
-    use Resettable, HasCode;
+    use Resettable;
+    use HasCode;
 
     /**
      * @var string

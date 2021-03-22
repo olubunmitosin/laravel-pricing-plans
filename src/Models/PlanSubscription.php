@@ -41,9 +41,9 @@ class PlanSubscription extends Model
     /**
      * Subscription statuses
      */
-    const STATUS_ACTIVE = 'active';
-    const STATUS_CANCELED = 'canceled';
-    const STATUS_ENDED = 'ended';
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_CANCELED = 'canceled';
+    public const STATUS_ENDED = 'ended';
 
     /**
      * The attributes that are mass assignable.
@@ -275,7 +275,8 @@ class PlanSubscription extends Model
         // and interval_count) we will update the billing dates starting
         // today... and since we are basically creating a new billing cycle,
         // the usage data will be cleared.
-        if (is_null($this->plan) ||
+        if (
+            is_null($this->plan) ||
             $this->plan->interval_unit !== $plan->interval_unit ||
             $this->plan->interval_count !== $plan->interval_count
         ) {

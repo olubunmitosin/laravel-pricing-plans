@@ -25,7 +25,8 @@ use Laravel\PricingPlans\Period;
  */
 class Plan extends Model
 {
-    use Resettable, HasCode;
+    use Resettable;
+    use HasCode;
 
     /**
      * The attributes that are mass assignable.
