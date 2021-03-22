@@ -1,0 +1,5 @@
+grumphp:
+    tasks:
+        phplint: ~
+        phpcs: ~
+        phpunit: ~
