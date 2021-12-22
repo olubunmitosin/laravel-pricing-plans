@@ -441,6 +441,15 @@ new `ends_at` date based on the selected plan and _will clear the usage data_ of
 $user->subscription('main')->renew();
 ```
 
+### Change a Subscription
+
+To change a subscription you may use the `changePlan` method available in the subscription model. This will set a
+new `ends_at` date, set a new plan id based on the selected plan and _will clear the usage data_ of the subscription.
+
+```php
+$user->subscription('main')->changePlan($plan);
+```
+
 _Canceled subscriptions with an ended period can't be renewed._
 
 ### Cancel a Subscription
@@ -505,16 +514,16 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email to [Oanh Nguyen](mailto:oanhnn.bk@gmail.com) instead of using
-the issue tracker.
+Use the issue tracker.
 
 ## Credits
 
-I forked and recreated this project from [gerardojbaez/laraplans](https://github.com/gerardojbaez/laraplans) project in
-mid-2017. Thank [Gerardo Baez](https://github.com/gerardojbaez)
+I forked and recreated this project from [henoc35/laravel-pricing-plans](https://github.com/henoc35/laravel-pricing-plans) project in
+late-2021. Thanks [Djabia Henoc](https://github.com/henoc35)
 
 - [Oanh Nguyen](https://github.com/oanhnn)
 - [Gerardo Baez](https://github.com/gerardojbaez)
+- [Djabia Henoc](https://github.com/henoc35)
 - [All Contributors](../../contributors)
 
 ## License
