@@ -92,7 +92,7 @@ class CreatePlansTables extends Migration
             $table->increments('id');
             $table->integer('subscription_id')->unsigned();
             $table->string('feature_code');
-            $table->smallInteger('used')->unsigned()->default(0);
+            $table->bigInteger('used')->default(0);
             $table->timestamp('valid_until')->nullable();
             $table->timestamps();
 

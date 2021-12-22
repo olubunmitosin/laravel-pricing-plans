@@ -51,9 +51,8 @@ return [
         'PlanFeature'           => 'Laravel\\PricingPlans\\Models\\PlanFeature',
         'PlanSubscription'      => 'Laravel\\PricingPlans\\Models\\PlanSubscription',
         'PlanSubscriptionUsage' => 'Laravel\\PricingPlans\\Models\\PlanSubscriptionUsage',
-        //
         'Group'                 => 'Laravel\\PricingPlans\\Models\\Group',
-        'PlanGroup'                 => 'Laravel\\PricingPlans\\Models\\PlanGroup',
+        'PlanGroup'             => 'Laravel\\PricingPlans\\Models\\PlanGroup',
     ],
 
 ];

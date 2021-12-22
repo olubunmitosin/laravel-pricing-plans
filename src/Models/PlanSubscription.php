@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Event;
 use InvalidArgumentException;
+use Laravel\PricingPlans\Events\SubscriptionPlanChanged;
 use Laravel\PricingPlans\Events\SubscriptionRenewed;
 use Laravel\PricingPlans\Events\SubscriptionCanceled;
 use Laravel\PricingPlans\Period;
@@ -290,6 +291,7 @@ class PlanSubscription extends Model
 
         // Attach new plan to subscription
         $this->plan_id = $plan->id;
+        $this->save();
 
         return $this;
     }

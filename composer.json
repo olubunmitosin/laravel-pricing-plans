@@ -1,5 +1,5 @@
 {
-  "name": "cityhunter/laravel-pricing-plans",
+  "name": "olubunmitosin/laravel-pricing-plans",
   "type": "library",
   "description": "A package provide pricing plans for Laravel.",
   "keywords": [
@@ -9,15 +9,19 @@
     "pricing"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/henoc35/laravel-pricing-plans",
+  "homepage": "https://github.com/olubunmitosin/laravel-pricing-plans",
   "support": {
-    "issues": "https://github.com/henoc35/laravel-pricing-plans/issues",
-    "source": "https://github.com/henoc35/laravel-pricing-plans"
+    "issues": "https://github.com/olubunmitosin/laravel-pricing-plans/issues",
+    "source": "https://github.com/olubunmitosin/laravel-pricing-plans"
   },
   "authors": [
     {
       "name": "Oanh Nguyen",
       "email": "oanhnn.bk@gmail.com"
+    },
+    {
+      "name": "Olubunmi Tosin Victor",
+      "email": "olubunmivictor6@gmail.com"
     }
   ],
   "autoload": {

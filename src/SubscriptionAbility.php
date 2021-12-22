@@ -29,9 +29,10 @@ class SubscriptionAbility
      * available uses.
      *
      * @param string $featureCode
+     * @param int $units
      * @return bool
      */
-    public function canUse(string $featureCode): bool
+    public function canUse(string $featureCode, $units = 0): bool
     {
         // Get features and usage
         $featureValue = $this->value($featureCode);
@@ -53,7 +54,7 @@ class SubscriptionAbility
         }
 
         // Check for available uses
-        return $this->remainings($featureCode) > 0;
+        return $this->remainings($featureCode, $units) > 0;
     }
 
     /**
@@ -78,11 +79,12 @@ class SubscriptionAbility
      * Get the available uses.
      *
      * @param string $featureCode
+     * @param int $units
      * @return int
      */
-    public function remainings(string $featureCode): int
+    public function remainings(string $featureCode, $units = 0): int
     {
-        return (int)$this->value($featureCode) - $this->consumed($featureCode);
+        return (int)$this->value($featureCode) - ( $this->consumed($featureCode) + $units );
     }
 
     /**
