@@ -73,7 +73,7 @@ Easy provide pricing plans for Your Laravel 8.+ Application.
 Begin by pulling in the package through Composer.
 
 ```bash
-$ composer require cityhunter/laravel-pricing-plans
+$ composer require olubunmitosin/laravel-pricing-plans
 ```
 
 ### Service Provider
